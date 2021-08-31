@@ -40,7 +40,11 @@ public class CharacterBehaviour : MonoBehaviour
         //Get camera right
         Vector3 cameraRight = playerCamera.transform.right;
 
+        //find the desired velocity
         _desiredGroundVelocity = (_desiredGroundVelocity.x * cameraRight + _desiredGroundVelocity.z * cameraForward);
+                                                        // or (cameraForward * inputForward) + (cameraRight * inputRight) inputs are the change for the 
+                                                        //"get movement input group"
+                                                        //horizontal is inputForward and vertical is inputRight 
 
         //get jump input
         _isJumpedDesired = Input.GetButtonDown("Jump");
