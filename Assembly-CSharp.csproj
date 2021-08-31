@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\WakeUpMaterialBehaviour.cs" />
     <Compile Include="Assets\Scripts\VehicleBehaviour.cs" />
+    <Compile Include="Assets\Scripts\CharacterBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
