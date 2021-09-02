@@ -8,13 +8,16 @@ public class CharacterBehaviour : MonoBehaviour
     public float gravityModifier = 1.0f;
     public float airControl = 1.0f;
     public float jumpForce = 10;
+    public bool faceWithCamera = true;
 
-    public bool _isGrounded = false;
+    private bool _isGrounded = false;
 
     public Camera playerCamera;
     private CharacterController _controller;
+    [SerializeField]
+    private Animator _animator;
 
-    private Vector3 _desiredGroundVelocity;
+    private Vector3 _desiredVelocity;
     private Vector3 _desiredAirVelocity;
     private bool _isJumpedDesired;
 
@@ -27,9 +30,9 @@ public class CharacterBehaviour : MonoBehaviour
     {
 
         //get movement input
-        _desiredGroundVelocity.x = Input.GetAxis("Horizontal");
-        _desiredGroundVelocity.y = 0.0f;
-        _desiredGroundVelocity.z = Input.GetAxis("Vertical");
+        _desiredVelocity.x = Input.GetAxis("Horizontal"); //_desiredVelocity.x is inputRight
+        _desiredVelocity.y = 0.0f;
+        _desiredVelocity.z = Input.GetAxis("Vertical");//_desiredVelocity.y is inputForward
 
         //Get camera forward
         Vector3 cameraForward = playerCamera.transform.forward;
@@ -41,20 +44,39 @@ public class CharacterBehaviour : MonoBehaviour
         Vector3 cameraRight = playerCamera.transform.right;
 
         //find the desired velocity
-        _desiredGroundVelocity = (_desiredGroundVelocity.x * cameraRight + _desiredGroundVelocity.z * cameraForward);
-                                                        // or (cameraForward * inputForward) + (cameraRight * inputRight) inputs are the change for the 
-                                                        //"get movement input group"
-                                                        //horizontal is inputForward and vertical is inputRight 
+        _desiredVelocity = (_desiredVelocity.x * cameraRight + _desiredVelocity.z * cameraForward);
+        // or (cameraForward * inputForward) + (cameraRight * inputRight) inputs are the change for the 
+        //"get movement input group"
+        //horizontal is inputForward and vertical is inputRight 
 
         //get jump input
         _isJumpedDesired = Input.GetButtonDown("Jump");
 
         //set movement magnitude
-        _desiredGroundVelocity.Normalize();
-        _desiredGroundVelocity *= speed;
+        _desiredVelocity.Normalize();
+        _desiredVelocity *= speed;
 
-        //check foe ground 
+        //check for ground 
         _isGrounded = _controller.isGrounded;
+
+        //update animations
+        if (faceWithCamera)
+        {
+            transform.forward = cameraForward;
+            _animator.SetFloat("Speed", _desiredVelocity.x);
+            _animator.SetFloat("Direction", _desiredVelocity.z);
+        }
+        else
+        {
+            if(_desiredVelocity != Vector3.zero)
+                transform.forward = _desiredVelocity.normalized;
+            _animator.SetFloat("Speed", _desiredVelocity.magnitude / speed);
+        }
+
+        _animator.SetBool("Jump", !_isGrounded);
+
+        //Update animations
+        _animator.SetFloat("Speed", _desiredVelocity.magnitude / speed);
 
         if (_isJumpedDesired)
         {
@@ -72,9 +94,9 @@ public class CharacterBehaviour : MonoBehaviour
         _desiredAirVelocity += Physics.gravity * gravityModifier * Time.deltaTime;
 
         //apply gravity
-        _desiredGroundVelocity += _desiredAirVelocity;
+        _desiredVelocity += _desiredAirVelocity;
 
         //move
-        _controller.Move((_desiredGroundVelocity + _desiredAirVelocity) * Time.deltaTime);
+        _controller.Move((_desiredVelocity + _desiredAirVelocity) * Time.deltaTime);
     }
 }
