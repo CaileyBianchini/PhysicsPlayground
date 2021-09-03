@@ -8,19 +8,19 @@ public class PlayerTempDeathBehaviour : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Ragdoll"))
+        if (other.gameObject.CompareTag("Ragdoll"))
         {
             _animator.enabled = false;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Ragdoll"))
+        if (other.gameObject.CompareTag("Ragdoll"))
         {
-            _animator.enabled = true ;
+            _animator.enabled = true;
         }
     }
 }
