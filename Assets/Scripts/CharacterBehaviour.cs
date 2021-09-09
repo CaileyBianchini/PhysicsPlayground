@@ -74,6 +74,7 @@ public class CharacterBehaviour : MonoBehaviour
         }
 
         _animator.SetBool("Jump", !_isGrounded);
+        _animator.SetFloat("VerticalSpeed", _desiredAirVelocity.y / jumpForce);
 
         //Update animations
         _animator.SetFloat("Speed", _desiredVelocity.magnitude / speed);
@@ -87,7 +88,7 @@ public class CharacterBehaviour : MonoBehaviour
         //step on ground
         if (_isGrounded && _desiredAirVelocity.y < 0.0f)
         {
-            _desiredAirVelocity.y = 0.0f;
+            _desiredAirVelocity.y = -1.0f;
         }
 
         //add air velocity
