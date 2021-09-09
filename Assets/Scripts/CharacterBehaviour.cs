@@ -79,7 +79,7 @@ public class CharacterBehaviour : MonoBehaviour
         //Update animations
         _animator.SetFloat("Speed", _desiredVelocity.magnitude / speed);
 
-        if (_isJumpedDesired)
+        if (_isJumpedDesired && _isGrounded)
         {
             _desiredAirVelocity.y = jumpForce;
             _isJumpedDesired = !_isJumpedDesired;
@@ -99,5 +99,9 @@ public class CharacterBehaviour : MonoBehaviour
 
         //move
         _controller.Move((_desiredVelocity + _desiredAirVelocity) * Time.deltaTime);
+
+        //allows player to quite
+        if (Input.GetKeyDown("Cancel"))
+            Application.Quit();
     }
 }
