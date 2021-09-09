@@ -9,11 +9,15 @@ public class CharacterBehaviour : MonoBehaviour
     public float airControl = 1.0f;
     public float jumpForce = 10;
     public bool faceWithCamera = true;
+    private int intToSave;
+    private float floatToSave;
+    private string stringToSave = "";
 
     private bool _isGrounded = false;
 
     public Camera playerCamera;
     private CharacterController _controller;
+    private Rigidbody _rigidbody;
     [SerializeField]
     private Animator _animator;
 
@@ -24,6 +28,38 @@ public class CharacterBehaviour : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    void SaveGame()
+    {
+        PlayerPrefs.SetInt("SavedInteger", intToSave);
+        PlayerPrefs.SetFloat("SavedFloat", floatToSave);
+        PlayerPrefs.SetString("SavedString", stringToSave);
+        PlayerPrefs.Save();
+        Debug.Log("Game data saved!");
+    }
+
+    void LoadGame()
+    {
+        if (PlayerPrefs.HasKey("SavedInteger"))
+        {
+            intToSave = PlayerPrefs.GetInt("SavedInteger");
+            floatToSave = PlayerPrefs.GetFloat("SavedFloat");
+            stringToSave = PlayerPrefs.GetString("SavedString");
+            Debug.Log("Game data loaded!");
+        }
+        else
+            Debug.LogError("There is no save data!");
+    }
+
+    void ResetData()
+    {
+        PlayerPrefs.DeleteAll();
+        intToSave = 0;
+        floatToSave = 0.0f;
+        stringToSave = "";
+        Debug.Log("Data reset complete");
     }
 
     private void Update()
@@ -101,7 +137,10 @@ public class CharacterBehaviour : MonoBehaviour
         _controller.Move((_desiredVelocity + _desiredAirVelocity) * Time.deltaTime);
 
         //allows player to quite
-        if (Input.GetKeyDown("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
+        {
+            SaveGame();
             Application.Quit();
+        }
     }
 }
