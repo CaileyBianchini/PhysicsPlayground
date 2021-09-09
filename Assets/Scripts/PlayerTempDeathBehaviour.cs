@@ -23,4 +23,5 @@ public class PlayerTempDeathBehaviour : MonoBehaviour
             _animator.enabled = true;
         }
     }
+
 }
