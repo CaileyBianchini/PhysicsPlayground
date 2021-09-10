@@ -9,9 +9,6 @@ public class CharacterBehaviour : MonoBehaviour
     public float airControl = 1.0f;
     public float jumpForce = 10;
     public bool faceWithCamera = true;
-    private int intToSave;
-    private float floatToSave;
-    private string stringToSave = "";
 
     private bool _isGrounded = false;
 

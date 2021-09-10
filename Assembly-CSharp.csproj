@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\WakeUpMaterialBehaviour.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterBehaviour.cs" />
     <Compile Include="Assets\unity-chan!\Unity-chan! Model\Scripts\AutoBlink.cs" />
+    <Compile Include="Assets\Scripts\NextSceneBehaviour.cs" />
     <Compile Include="Assets\unity-chan!\Unity-chan! Model\Scripts\CameraController.cs" />
     <Compile Include="Assets\unity-chan!\Unity-chan! Model\Scripts\IdleChanger.cs" />
     <Compile Include="Assets\unity-chan!\Unity-chan! Model\Scripts\SpringManager.cs" />
@@ -74,7 +75,7 @@
     <Compile Include="Assets\unity-chan!\Unity-chan! Model\Scripts\RandomWind.cs" />
     <Compile Include="Assets\unity-chan!\Unity-chan! Model\Scripts\UnityChanControlScriptWithRgidBody.cs" />
     <Compile Include="Assets\Scripts\BlockDeleteBehaviour.cs" />
-    <Compile Include="Assets\Scripts\NextSceneBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Knob Behaviour.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
