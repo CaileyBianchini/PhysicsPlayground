@@ -28,6 +28,13 @@ public class CharacterBehaviour : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+
+    public void OnQuit()
+    {
+        Application.Quit();
+        //TO DO: add save feature
+    }
+
     private void Update()
     {
 
@@ -105,7 +112,7 @@ public class CharacterBehaviour : MonoBehaviour
         //allows player to quite
         if (Input.GetButtonDown("Cancel"))
         {
-            Application.Quit();
+            OnQuit();
         }
     }
 }
