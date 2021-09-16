@@ -13,11 +13,15 @@ public class BlockDeleteBehaviour : MonoBehaviour
         _collision = GetComponent<Collider>();
     }
 
+    //if object collides
     private void OnTriggerEnter(Collider other)
     {
+        //with another objected tagged with Player
         if (other.gameObject.CompareTag("Player"))
         {
+            //make oject invisble
             _object.enabled = false;
+            //and turn off collision for object
             _collision.enabled = false;
         }
     }

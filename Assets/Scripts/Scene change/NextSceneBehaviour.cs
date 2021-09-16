@@ -17,16 +17,20 @@ public class NextSceneBehaviour : MonoBehaviour
         level = GetComponent<Canvas>();
     }
 
+    //if object collides
     private void OnTriggerEnter(Collider other)
     {
+        //with a object tagged player
         if (other.gameObject.CompareTag("Player"))
         {
+            //it will enable the level canvas
             level.enabled = true;
         }
     }
 
     public void NextScene()
     {
+        //this will load scene by its index and name
         SceneManager.LoadScene(sceneName: nextSceneName);
         SceneManager.LoadScene(sceneBuildIndex: scene);
     }

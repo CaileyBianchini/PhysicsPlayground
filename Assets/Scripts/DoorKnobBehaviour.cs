@@ -17,18 +17,24 @@ public class DoorKnobBehaviour : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    //if objects collides with object
     private void OnTriggerEnter(Collider other)
     {
+        //tagged Player
         if (other.gameObject.CompareTag("Player"))
         {
+            //_closeQuaters  will become true
             _closeQuaters = true;
         }
     }
 
+    //if object exits collidtion with object
     private void OnTriggerExit(Collider other)
     {
+        //tagged Player
         if (other.gameObject.CompareTag("Player"))
         {
+            //_closeQuaters will become false
             _closeQuaters = false;
         }
     }

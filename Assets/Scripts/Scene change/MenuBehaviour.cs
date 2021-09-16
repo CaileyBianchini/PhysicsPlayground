@@ -13,12 +13,14 @@ public class MenuBehaviour : MonoBehaviour
         customMenu = GetComponent<Canvas>();
     }
 
+    //this will turn start menu canvas invisible and bring up the custom canvas
     public void StartMenu()
     {
         menu.enabled = false;
         customMenu.enabled = true;
     }
 
+    //if player is done customizing they can turn the canvas invisible
     public void customDone()
     {
         menu.enabled = false;
