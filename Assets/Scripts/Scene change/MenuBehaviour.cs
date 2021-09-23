@@ -17,7 +17,6 @@ public class MenuBehaviour : MonoBehaviour
     public void StartMenu()
     {
         menu.enabled = false;
-        customMenu.enabled = true;
     }
 
     //if player is done customizing they can turn the canvas invisible
