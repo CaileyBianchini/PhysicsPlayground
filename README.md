@@ -53,8 +53,7 @@ Using the Mouse Left Button to lift like a garage door when you are touching it!
 
 
 ###Where to Play
-You can play on a chrome tab on [itch.io][itchio].
-You can also download the .exe in Releases in our github site [here][github.exe].
+You can download the .exe in Releases in our github site [here][github.exe].
 
 
 
