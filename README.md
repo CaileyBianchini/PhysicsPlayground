@@ -53,7 +53,7 @@ Using the Mouse Left Button to lift like a garage door when you are touching it!
 
 
 ###Where to Play
-You can download the .exe in Releases in our github site [here][github.exe].
+You can download the .exe in Releases in our github site [here][[github.exe](https://github.com/CaileyBianchini/PhysicsPlayground/releases/tag/PuzzleMapver2.0)].
 
 
 
